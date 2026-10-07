@@ -1,0 +1,514 @@
+/* Meteor Shower Calendar */
+
+/* the theme picker as icons (sun / moon / spiral) instead of swatches */
+#omg-theme-picker {
+  gap: 2px;
+}
+#omg-theme-picker > a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background: none;
+  color: currentColor;
+  opacity: 0.75;
+}
+#omg-theme-picker > a:hover,
+#omg-theme-picker > a.selected {
+  opacity: 1;
+}
+
+:root {
+  --ms-accent: #ffcf6e;
+  --ms-moon: #dfe6ee;
+  --ms-moon-dark: #2a3446;
+  --ms-line: rgba(255, 255, 255, 0.16);
+  --ms-muted: rgba(255, 255, 255, 0.7);
+  --ms-band: rgba(255, 255, 255, 0.03);
+  --ms-card: rgba(255, 255, 255, 0.04);
+  --ms-good: #7fd8a4;
+  --ms-fair: #ffc46b;
+  --ms-poor: #f08a7a;
+  --ms-none: #7d8899;
+  --ms-day: #6f8fb8;
+  --ms-civil: #3f5a83;
+  --ms-naut: #283c5c;
+  --ms-astro: #1a2740;
+  --ms-night: #0e1626;
+  --ms-rate: rgba(255, 207, 110, 0.35);
+}
+html[data-theme="light"] {
+  --ms-accent: #c77700;
+  --ms-moon: #8d9bab;
+  --ms-moon-dark: #e2e7ee;
+  --ms-line: rgba(26, 33, 45, 0.16);
+  --ms-muted: rgba(26, 33, 45, 0.7);
+  --ms-band: rgba(26, 33, 45, 0.03);
+  --ms-card: rgba(26, 33, 45, 0.035);
+  --ms-good: #2e8b57;
+  --ms-fair: #c98100;
+  --ms-poor: #c4473a;
+  --ms-none: #9aa3af;
+  --ms-rate: rgba(255, 196, 80, 0.45);
+}
+html[data-theme="evol-blue"] {
+  --ms-accent: #ffe08a;
+  --ms-moon-dark: #1e5fa8;
+  --ms-line: rgba(255, 255, 255, 0.3);
+  --ms-muted: rgba(255, 255, 255, 0.85);
+  --ms-band: rgba(255, 255, 255, 0.05);
+  --ms-card: rgba(255, 255, 255, 0.09);
+  --ms-good: #b9f6ca;
+  --ms-fair: #ffe0b2;
+  --ms-poor: #ffab91;
+  --ms-none: #b0c4de;
+}
+
+.content {
+  max-width: 900px;
+}
+h3 {
+  margin-top: 30px;
+}
+select {
+  font: inherit;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--input-text);
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+}
+.explain {
+  max-width: 680px;
+  line-height: 1.55;
+}
+.explain .tips {
+  border-left: 3px solid var(--ms-accent);
+  padding-left: 12px;
+}
+.explain .note {
+  font-size: 0.9em;
+}
+
+/* ---------------------------------------------------------------- next */
+
+.next-box {
+  margin: 0 0 22px;
+}
+.next-label {
+  margin: 0;
+  opacity: 0.8;
+}
+.next-name {
+  font-size: 2.6em;
+  font-weight: bold;
+  line-height: 1.1;
+  margin: 4px 0 6px;
+  color: var(--ms-accent);
+}
+.next-date {
+  font-size: 1.15em;
+  margin: 0 0 8px;
+}
+.next-moon,
+.sh-moon {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0 0 8px;
+  line-height: 1.45;
+  max-width: 680px;
+}
+.next-moon svg,
+.sh-moon svg {
+  flex: none;
+  margin-top: 1px;
+}
+.tonight {
+  margin: 0;
+  opacity: 0.9;
+  line-height: 1.45;
+  max-width: 680px;
+}
+
+/* ---------------------------------------------------------------- pickers */
+
+.pickers {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 28px;
+}
+.place-pick,
+.year-nav,
+.sky-pick {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+.place-pick {
+  margin: 0;
+}
+.sky-pick .chips {
+  margin: 0;
+  gap: 6px;
+}
+.sky-pick .chips button {
+  padding: 4px 10px;
+  font-size: 0.9em;
+}
+.year-nav {
+  margin: 0 0 8px;
+}
+.year-label {
+  font-size: 1.3em;
+  min-width: 3em;
+  text-align: center;
+}
+.year-btn {
+  min-width: 40px;
+  margin: 0;
+}
+.year-btn:disabled {
+  opacity: 0.4;
+}
+.year-sum {
+  margin: 0 0 8px;
+  opacity: 0.85;
+  line-height: 1.45;
+}
+
+/* ---------------------------------------------------------------- timeline */
+
+.year-strip svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.month-band {
+  fill: var(--ms-band);
+}
+text.month {
+  font-size: 12px;
+  fill: var(--ms-muted);
+  text-anchor: middle;
+}
+.full-glow {
+  fill: var(--ms-moon);
+  opacity: 0.045;
+  rx: 6px;
+}
+.today {
+  stroke: var(--ms-accent);
+  stroke-width: 2;
+  stroke-dasharray: 3 3;
+}
+.active-line {
+  stroke: var(--ms-line);
+  stroke-width: 1.5;
+}
+.hump {
+  fill: var(--ms-none);
+  opacity: 0.55;
+}
+.peak-dot {
+  fill: var(--ms-none);
+}
+.q-good.hump,
+.q-good.peak-dot {
+  fill: var(--ms-good);
+}
+.q-fair.hump,
+.q-fair.peak-dot {
+  fill: var(--ms-fair);
+}
+.q-poor.hump,
+.q-poor.peak-dot {
+  fill: var(--ms-poor);
+}
+.sh-name {
+  font-size: 12px;
+  fill: currentColor;
+}
+.sh-link:hover .hump {
+  opacity: 0.9;
+}
+.sh-link:hover .sh-name {
+  text-decoration: underline;
+}
+.moon-dark {
+  fill: var(--ms-moon-dark);
+  stroke: var(--ms-moon);
+  stroke-width: 0.8;
+}
+.moon-lit {
+  fill: var(--ms-moon);
+}
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  font-size: 0.85em;
+  opacity: 0.85;
+  margin: 4px 0 6px;
+}
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.legend .sw {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--ms-none);
+}
+.legend .sw.q-good {
+  background: var(--ms-good);
+}
+.legend .sw.q-fair {
+  background: var(--ms-fair);
+}
+.legend .sw.q-poor {
+  background: var(--ms-poor);
+}
+.legend .sw.rate {
+  border-radius: 2px;
+  background: var(--ms-rate);
+}
+.legend .sw.twi {
+  border-radius: 2px;
+  background: var(--ms-civil);
+}
+.legend .ln {
+  display: inline-block;
+  width: 18px;
+  height: 0;
+  border-top: 2px solid var(--ms-accent);
+}
+.legend .ln.moon {
+  border-top: 2px dashed var(--ms-moon);
+}
+.night-legend {
+  margin-bottom: 18px;
+}
+
+/* ---------------------------------------------------------------- cards */
+
+.cards {
+  display: grid;
+  gap: 16px;
+}
+.sh-card {
+  padding: 14px 18px 12px;
+  border-radius: 10px;
+  background: var(--ms-card);
+  border-left: 4px solid var(--ms-none);
+  scroll-margin-top: 90px;
+}
+.sh-card.q-good {
+  border-left-color: var(--ms-good);
+}
+.sh-card.q-fair {
+  border-left-color: var(--ms-fair);
+}
+.sh-card.q-poor {
+  border-left-color: var(--ms-poor);
+}
+.sh-card h4 {
+  margin: 0;
+  font-size: 1.35em;
+}
+.sh-card .code {
+  font-size: 0.6em;
+  font-weight: normal;
+  opacity: 0.6;
+  letter-spacing: 0.08em;
+  margin-left: 4px;
+}
+.sh-night {
+  margin: 2px 0 0;
+  font-size: 1.05em;
+}
+.sh-active {
+  margin: 0 0 8px;
+  font-size: 0.85em;
+  opacity: 0.7;
+}
+.soon {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 0 8px;
+  border-radius: 10px;
+  font-size: 0.8em;
+  background: var(--ms-accent);
+  color: #1a212d;
+}
+.q-txt {
+  color: var(--ms-none);
+}
+.q-good .q-txt,
+.next-moon.q-good b {
+  color: var(--ms-good);
+}
+.q-fair .q-txt,
+.next-moon.q-fair b {
+  color: var(--ms-fair);
+}
+.q-poor .q-txt,
+.next-moon.q-poor b {
+  color: var(--ms-poor);
+}
+.sh-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin: 4px 0 12px;
+}
+.sh-stats .stat {
+  padding: 6px 10px;
+}
+.sh-sky {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.sh-sky .night {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  border-radius: 6px;
+}
+.sh-sky .compass {
+  flex: 0 0 120px;
+  width: 120px;
+}
+.sh-look {
+  margin: 10px 0 6px;
+  line-height: 1.45;
+}
+.sh-about {
+  margin: 0 0 6px;
+  font-size: 0.92em;
+  line-height: 1.5;
+  opacity: 0.88;
+}
+.sh-parent {
+  margin: 0;
+  font-size: 0.82em;
+  opacity: 0.7;
+}
+
+/* the night */
+.sky-day {
+  fill: var(--ms-day);
+}
+.sky-civil {
+  fill: var(--ms-civil);
+}
+.sky-naut {
+  fill: var(--ms-naut);
+}
+.sky-astro {
+  fill: var(--ms-astro);
+}
+.sky-night {
+  fill: var(--ms-night);
+}
+.night .grid {
+  stroke: rgba(255, 255, 255, 0.1);
+}
+.night .horizon {
+  stroke: rgba(255, 255, 255, 0.35);
+}
+.night .axis {
+  font-size: 11px;
+  fill: var(--ms-muted);
+  text-anchor: middle;
+}
+.night .axis.end {
+  text-anchor: end;
+}
+.rate-area {
+  fill: var(--ms-rate);
+}
+.rad-line {
+  fill: none;
+  stroke: var(--ms-accent);
+  stroke-width: 2;
+}
+.moon-line {
+  fill: none;
+  stroke: #dfe6ee;
+  stroke-width: 1.6;
+  stroke-dasharray: 4 3;
+}
+.best-line {
+  stroke: rgba(255, 255, 255, 0.5);
+  stroke-dasharray: 2 3;
+}
+.best-dot {
+  fill: var(--ms-accent);
+  stroke: #0e1626;
+  stroke-width: 1.5;
+}
+
+/* the compass: the sky seen from below, the zenith in the middle */
+.compass .dome {
+  fill: var(--ms-night);
+  stroke: var(--ms-line);
+}
+.compass .ring {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.1);
+}
+.compass .cardinal {
+  font-size: 8px;
+  fill: var(--ms-muted);
+  text-anchor: middle;
+}
+.compass .cmp-rad {
+  fill: var(--ms-accent);
+}
+.compass .streak {
+  stroke: var(--ms-accent);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  opacity: 0.8;
+}
+.compass .cmp-moon {
+  fill: #dfe6ee;
+}
+
+@media only screen and (max-width: 640px) {
+  .sh-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .sh-sky {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .sh-sky .compass {
+    align-self: center;
+  }
+  .next-name {
+    font-size: 2em;
+  }
+}
+
+/* the year strip scrolls sideways on phones rather than shrinking to nothing */
+@media only screen and (max-width: 760px) {
+  .year-strip {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .year-strip svg {
+    min-width: 720px;
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Meteor Shower Calendar",
+  "short_name": "Meteors",
+  "description": "Meteor Shower Calendar: the Perseids, Geminids, Quadrantids and the rest, with their peaks, the Moon's interference, the best time and where to look from your city, for any year.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#1a212d",
+  "theme_color": "#1a212d",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

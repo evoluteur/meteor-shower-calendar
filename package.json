@@ -1,0 +1,33 @@
+{
+  "name": "meteor-shower-calendar",
+  "version": "1.0.0",
+  "description": "The Perseids, Geminids and the rest, with their peaks, the Moon's interference and where to look, from your city, for any year from 1900 to 2100.",
+  "repository": "github:evoluteur/meteor-shower-calendar",
+  "homepage": "https://evoluteur.github.io/meteor-shower-calendar/",
+  "copyright": "(c) 2026 Olivier Giulieri",
+  "author": "Olivier Giulieri (https://evoluteur.github.io/)",
+  "license": "MIT",
+  "keywords": [
+    "meteor-shower",
+    "meteors",
+    "shooting-stars",
+    "perseids",
+    "geminids",
+    "quadrantids",
+    "orionids",
+    "leonids",
+    "radiant",
+    "zhr",
+    "moon-phase",
+    "astronomy",
+    "meeus",
+    "calendar",
+    "stargazing",
+    "esoterica",
+    "pwa",
+    "javascript"
+  ],
+  "scripts": {
+    "sync:themes": "sh scripts/sync-omg-themes.sh"
+  }
+}

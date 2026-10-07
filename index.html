@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-063933E3C2"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-063933E3C2");
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meteor Shower Calendar: Perseids, Geminids and Every Shower's Peak</title>
+    <meta
+      name="description"
+      content="Meteor Shower Calendar: the Perseids, Geminids, Quadrantids and the rest, with their peaks, the Moon's interference, the best time and where to look from your city, for any year."
+    />
+    <meta
+      name="keywords"
+      content="meteor shower, meteor shower calendar, perseids, geminids, quadrantids, orionids, leonids, lyrids, eta aquariids, shooting stars, radiant, zhr, moon phase, stargazing"
+    />
+    <meta name="author" content="Olivier Giulieri" />
+    <link rel="canonical" href="https://evoluteur.github.io/meteor-shower-calendar/" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="icon-192.png" />
+    <meta name="theme-color" content="#1a212d" />
+    <meta property="og:site_name" content="Evoluteur" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Meteor Shower Calendar" />
+    <meta
+      property="og:description"
+      content="The Perseids, the Geminids and the rest: their peaks, the Moon's interference, the best time and where to look."
+    />
+    <meta property="og:url" content="https://evoluteur.github.io/meteor-shower-calendar/" />
+    <meta
+      property="og:image"
+      content="https://evoluteur.github.io/meteor-shower-calendar/meteor-shower-calendar.png"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Overpass"
+    />
+    <link id="omg-core-css" rel="stylesheet" href="css/core.css" />
+    <script>
+      // Themes (dark, light, evol-blue) are copies of omg-themes (npm run sync:themes);
+      // set OMG_THEMES_BASE to "https://evoluteur.github.io/omg-themes/" to link the hosted ones instead.
+      window.OMG_THEMES_BASE = "";
+      window.OMG_DEFAULT_THEME = "dark";
+      (function () {
+        var t = window.OMG_DEFAULT_THEME;
+        try {
+          t = localStorage.getItem("omg-theme") || t;
+        } catch (e) {}
+        if (t !== "dark" && t !== "light" && t !== "evol-blue")
+          t = window.OMG_DEFAULT_THEME;
+        document.documentElement.setAttribute("data-theme", t);
+        // written here (not in the markup) so the saved theme loads before first paint
+        document.write(
+          '<link id="omg-theme-css" rel="stylesheet" href="' +
+            window.OMG_THEMES_BASE +
+            "css/themes/" +
+            t +
+            "/" +
+            t +
+            '.css" />',
+        );
+      })();
+    </script>
+    <link id="omg-density-css" rel="stylesheet" href="css/densities.css" />
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/meteor-shower-calendar.css" />
+
+    <script src="js/omg.js"></script>
+    <script src="js/astro.js"></script>
+    <script src="js/places.js"></script>
+    <script src="js/showers.js"></script>
+    <script src="js/meteors.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        addEventListener("load", () =>
+          navigator.serviceWorker.register("sw.js"),
+        );
+      }
+    </script>
+  </head>
+
+  <body
+    onload="
+      setupPage('home');
+      initMeteors();
+    "
+    id="omg-body"
+  >
+    <div id="omg-header">
+      <h1>Meteor Shower Calendar</h1>
+      <div id="omg-header-tools">
+        <div id="omg-theme-picker"></div>
+        <a
+          id="omg-github"
+          href="https://github.com/evoluteur/meteor-shower-calendar"
+          target="_blank"
+          rel="noopener"
+          title="Meteor Shower Calendar on GitHub"
+          aria-label="Meteor Shower Calendar on GitHub"
+          ><svg viewBox="0 0 16 16" aria-hidden="true">
+            <path
+              d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+            /></svg
+        ></a>
+      </div>
+    </div>
+    <noscript
+      ><p class="tagline">
+        Meteor Shower Calendar runs on JavaScript. Enable it to use the page.
+      </p></noscript
+    >
+    <h2>When and where to look up</h2>
+    <div class="content">
+      <section id="next" class="next-box" aria-live="polite"></section>
+
+      <div class="pickers">
+        <p class="place-pick">
+          <label for="place">Seen from</label>
+          <select id="place"></select>
+          <a href="#" id="my-location">My location</a>
+        </p>
+        <div class="sky-pick">
+          <span>Sky</span>
+          <div class="chips" id="sky-chips" role="group" aria-label="How dark the sky is"></div>
+        </div>
+      </div>
+
+      <h3 id="year-title">Meteor showers of the year</h3>
+      <div class="year-nav">
+        <button type="button" id="year-prev" class="year-btn" aria-label="Previous year">&larr;</button>
+        <span id="year-label" class="year-label"></span>
+        <button type="button" id="year-next" class="year-btn" aria-label="Next year">&rarr;</button>
+        <a href="#" id="this-year" class="this-year">This year</a>
+      </div>
+      <p id="year-sum" class="year-sum"></p>
+      <div id="year-strip" class="year-strip"></div>
+      <p class="legend">
+        <span><i class="sw q-good"></i> Moon out of the way</span>
+        <span><i class="sw q-fair"></i> some moonlight</span>
+        <span><i class="sw q-poor"></i> the Moon spoils it</span>
+        <span><i class="sw q-none"></i> not seen from here</span>
+        <span><svg class="plain moon-ico" viewBox="0 0 20 20" width="14" height="14" style="width:14px;height:14px" aria-hidden="true"><circle cx="10" cy="10" r="9" class="moon-dark" /><circle cx="10" cy="10" r="9" class="moon-lit" /></svg> full moon</span>
+      </p>
+      <p class="legend night-legend">
+        On each night: <span><i class="ln rad"></i> the radiant</span>
+        <span><i class="ln moon"></i> the Moon</span>
+        <span><i class="sw rate"></i> meteors per hour</span>
+        <span><i class="sw twi"></i> twilight</span>
+      </p>
+      <div id="cards" class="cards"></div>
+
+      <h3>Shooting stars</h3>
+      <div class="explain">
+        <p>
+          A meteor is a grain of dust, often no bigger than a grain of sand,
+          hitting the air at 20 to 70 km a second. It burns up 100 km above
+          the ground, and the trail of glowing air is what we see. Comets
+          shed this dust as they pass near the Sun, and it spreads along
+          their orbit into a stream. Where the Earth's orbit crosses a
+          stream, it meets the dust on the same days every year: a
+          <strong>meteor shower</strong>.
+        </p>
+        <p>
+          The grains of a stream all travel in parallel, so seen from the
+          ground their trails all seem to come from one point of the sky, the
+          <strong>radiant</strong>, the way parallel rails meet on the
+          horizon. Showers are named after the constellation of their
+          radiant: the Perseids come from Perseus, the Geminids from Gemini.
+          The higher the radiant, the more meteors: with it on the horizon,
+          the stream skims the air and few grains reach it. Meteors appear
+          anywhere in the sky, though, not at the radiant, so there is no
+          need to look straight at it.
+        </p>
+        <p>
+          The strength of a shower is given as its
+          <strong>ZHR</strong>, the zenithal hourly rate: the meteors one
+          person would see in an hour under a perfectly dark sky, with the
+          radiant overhead. Real skies are never that good, so the counts here
+          are corrected for the height of the radiant, the darkness of the
+          sky you pick, and the <strong>Moon</strong>. Moonlight washes out
+          the faint meteors, which are most of them: a full moon can take
+          away three quarters of a shower. A few days either side of new
+          moon are best.
+        </p>
+        <p>
+          Most showers are better after midnight. In the evening we are on
+          the trailing side of the Earth, and only meteors catching up with
+          us hit the air; after midnight we face forward in the Earth's
+          orbit, into the dust, like a windshield in the rain. The radiant
+          is also higher then, for most showers.
+        </p>
+        <p class="tips">
+          <strong>To watch:</strong> get away from lights, lie back on a
+          reclining chair or a blanket, and give your eyes 20 minutes to get
+          used to the dark (no phone screens, or a red light). Look up and a
+          little away from the radiant, at the darkest part of the sky, and
+          be patient: meteors come in bunches, with long quiet gaps between
+          them. No telescope or binoculars, they show too little of the sky.
+        </p>
+        <p class="note">
+          The peaks, rates and radiants are those of the
+          <a href="https://www.imo.net/">International Meteor Organization</a>'s
+          calendar; the dates of the peaks are computed in your browser from
+          the solar longitude, the point of the Earth's orbit where each
+          shower peaks, and the positions of the Sun and the Moon with the
+          methods of Jean Meeus's <em>Astronomical Algorithms</em>. Real
+          showers vary from year to year, and some, like the Draconids or the
+          Leonids, can surprise with an outburst: the rates here are a
+          guide, not a promise.
+        </p>
+      </div>
+
+      <div class="footer">
+        <p>
+          Meteor Shower Calendar is open source on
+          <a href="https://github.com/evoluteur/meteor-shower-calendar">GitHub</a>
+          with an MIT license.
+        </p>
+        <p>
+          Had fun browsing the app?
+          <a href="https://github.com/sponsors/evoluteur"
+            >Buy me a coffee by becoming a sponsor</a
+          >.
+        </p>
+        <p>
+          You may also enjoy
+          <a href="https://evoluteur.github.io/eclipse-calendar/">Eclipse Calendar</a>,
+          <a href="https://evoluteur.github.io/moon-phase-calendar/">Moon Phase Calendar</a>
+          and <a href="https://evoluteur.github.io/mercury-retrograde/">Mercury Retrograde</a>.
+          See them all on
+          <a href="https://evoluteur.github.io/esoterica.html">Esoterica</a>.
+        </p>
+        <p class="copyright">
+          &#169; 2026
+          <a href="https://evoluteur.github.io/">Olivier Giulieri</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
